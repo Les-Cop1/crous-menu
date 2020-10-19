@@ -90,14 +90,18 @@ export default class Menu extends React.Component {
                 <>
                     <div className="row my-2">
                         <div className="col">
-                            <button type="button" className="btn" onClick={() => this.updateWeek("-", 1)}>
-                                <FontAwesomeIcon icon={["fas", "chevron-left"]}/>
+                            <button type="button" className="btn d-flex float-left align-items-center"
+                                    onClick={() => this.updateWeek("-", 1)}>
+                                <FontAwesomeIcon className="mb-0 mr-3" icon={["fas", "chevron-left"]}/>
+                                Semaine précédente
                             </button>
                         </div>
 
-                        <div className="col text-right">
-                            <button type="button" className="btn" onClick={() => this.updateWeek("+", 1)}>
-                                <FontAwesomeIcon icon={["fas", "chevron-right"]}/>
+                        <div className="col">
+                            <button type="button" className="btn d-flex float-right align-items-center"
+                                    onClick={() => this.updateWeek("+", 1)}>
+                                Semaine suivante
+                                <FontAwesomeIcon className="mb-0 ml-3" icon={["fas", "chevron-right"]}/>
                             </button>
                         </div>
                     </div>

@@ -13,6 +13,18 @@
   }
 }
 
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.image-preview {
+  object-fit: cover;
+  max-height: 150px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

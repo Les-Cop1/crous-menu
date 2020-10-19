@@ -5,7 +5,7 @@ export default class Index extends React.Component {
 
     render(){
         return (
-            <div className={"container"}>
+            <div className="container pb-5">
                 <Menu />
             </div>
         );

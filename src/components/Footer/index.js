@@ -5,7 +5,7 @@ export default class Footer extends Component {
     render() {
 
         return (
-            <footer className="container py-2 fixed-bottom">
+            <footer className="container py-2 fixed-bottom bg-white">
                 <div className="row">
                     <div className="col-12 col-md d-inline text-right">
                         <small className="d-block mb-3 text-four" style={{fontSize: "medium"}}>

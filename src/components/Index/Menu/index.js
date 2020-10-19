@@ -107,9 +107,8 @@ export default class Menu extends React.Component {
                     </div>
                     <div className="row row-cols-1 row-cols-lg-5">
                         {
-
                             this.state.menu.map((menu, i) => {
-                                return <MenuCard key={i} menu={menu}/>
+                                return <MenuCard key={menu.plat.jour} menu={menu} />
                             })
                         }
                     </div>

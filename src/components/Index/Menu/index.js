@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import MenuCard from "./MenuCard";
 import Loading from "../../Loading";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class Menu extends React.Component {
 
@@ -11,15 +12,16 @@ export default class Menu extends React.Component {
         this.getMonday = this.getMonday.bind(this)
         this.updateWeek = this.updateWeek.bind(this)
 
-        this.state={
-            lundi: this.getMonday(),
-            menu:[],
+        this.state = {
+            lundi: this.getMonday(new Date()),
+            menu: [],
             cafet: 15,
             loading: true
         }
     }
 
     componentDidMount() {
+
         this.loadMenu()
     }
 
@@ -27,50 +29,51 @@ export default class Menu extends React.Component {
         let daysOfWeek = []
         let currentDay = this.state.lundi
         for (let i = 0; i < 5; i++) {
-            currentDay.setDate(currentDay.getDate() + 1)
             daysOfWeek[i] = currentDay.getTime()
+            currentDay.setDate(currentDay.getDate() + 1)
         }
+        this.setState({
+            lundi: this.getMonday(currentDay)
+        })
 
         daysOfWeek.forEach((timestamp, i) => {
             let url = "https://gddl.crous-versailles.fr/vae/api/menus/date_and_lieu/" + timestamp + "/" + this.state.cafet
 
             axios.get(url)
-                .then((reponse) =>{
+                .then((reponse) => {
                     let menu = this.state.menu
-                    menu[i] = reponse.data[0].plat.libelle.split(', ')
+
+                    if (reponse.data.length > 0)
+                        menu[i] = {jour: timestamp, plat: reponse.data[0].plat.libelle.split(', ')}
+                    else {
+                        menu[i] = {jour: timestamp, plat: ["Aucun menu pour ce jour"]}
+                    }
+
                     this.setState({
                         menu,
                         loading: false
                     })
-                }).catch((status)=>{
+                }).catch((status) => {
                 console.log("Erreur de requete GET", status)
             })
         })
-
-        console.log(this.state.menu)
     }
 
-    getMonday() {
-        let curr = new Date()
-        let first = curr.getDate() - curr.getDay()
-
-        return new Date(curr.setDate(first))
+    getMonday(d) {
+        d = new Date(d);
+        let day = d.getDay(),
+            diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+        return new Date(d.setDate(diff));
     }
 
-    updateWeek(sens, nombre){
+    updateWeek(sens, nombre) {
         let lundi = this.state.lundi
-
-        //TODO Gérer fin d'année
-
         if (sens === "+") {
-            lundi = lundi.setDate(lundi.getDate() + 7)
+            lundi.setDate(lundi.getDate() + nombre * 7)
         } else {
-            lundi = lundi.setDate(lundi.getDate() - 7)
+            lundi.setDate(lundi.getDate() - nombre * 7)
         }
-
-        this.setState({
-            lundi
-        })
+        this.loadMenu()
     }
 
     render() {
@@ -78,18 +81,34 @@ export default class Menu extends React.Component {
             return (
                 <div className="row align-content-center" style={{height: "80vh"}}>
                     <div className="col d-flex justify-content-center">
-                        <Loading />
+                        <Loading/>
                     </div>
                 </div>
             );
         } else {
             return (
                 <>
-                    {
-                        this.state.menu.map(plat => {
-                            return <MenuCard plat={plat} />
-                        })
-                    }
+                    <div className="row my-2">
+                        <div className="col">
+                            <button type="button" className="btn" onClick={() => this.updateWeek("-", 1)}>
+                                <FontAwesomeIcon icon={["fas", "chevron-left"]}/>
+                            </button>
+                        </div>
+
+                        <div className="col text-right">
+                            <button type="button" className="btn" onClick={() => this.updateWeek("+", 1)}>
+                                <FontAwesomeIcon icon={["fas", "chevron-right"]}/>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="row row-cols-1 row-cols-lg-5">
+                        {
+
+                            this.state.menu.map((menu, i) => {
+                                return <MenuCard key={i} menu={menu}/>
+                            })
+                        }
+                    </div>
                 </>
             );
         }

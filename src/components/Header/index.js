@@ -12,6 +12,9 @@ export default class Header extends React.Component {
                              className="d-inline-block align-top mr-2" />
                             Menu CROUS
                     </div>
+                    <a className="btn text-white" style={{backgroundColor:"#d30304"}} rel="noopener noreferrer" target="_blank" href="https://crousandgo.crous-versailles.fr/home">
+                        Commander
+                    </a>
                 </div>
             </nav>
         );

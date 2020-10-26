@@ -44,7 +44,7 @@ export default class MenuCard extends React.Component {
                     })
                 } else {
                     this.setState({
-                        imageURL : process.env.PUBLIC_URL + "/rien.jpg"
+                        imageURL: process.env.PUBLIC_URL + "/rien.jpg"
                     })
                 }
             })
@@ -60,7 +60,8 @@ export default class MenuCard extends React.Component {
         return (
             <div className="col my-2">
                 <div className="card h-100">
-                    <img src={this.state.imageURL} className="card-img-top unselectable image-preview" draggable="false" alt={this.props.menu.plat[0]}/>
+                    <img src={this.state.imageURL} className="card-img-top unselectable image-preview" draggable="false"
+                         alt={this.props.menu.plat[0]}/>
                     <div className="card-body">
                         <h2 className="card-title text-capitalize">
                             {jour.toLocaleDateString("fr-FR", {weekday: "long"})}
@@ -75,11 +76,13 @@ export default class MenuCard extends React.Component {
                         </h5>
 
                         <p className="card-text">
-                            {this.props.menu.plat.map((plat, i) => {
-                                return (
-                                    <li key={i} className="text-capitalize-first">{plat}</li>
-                                )
-                            })}
+                            <ul>
+                                {this.props.menu.plat.map((plat, i) => {
+                                    return (
+                                        <li key={i} className="text-capitalize-first">{plat}</li>
+                                    )
+                                })}
+                            </ul>
                         </p>
                     </div>
                 </div>

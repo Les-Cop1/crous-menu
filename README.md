@@ -1,6 +1,6 @@
 # mySETUP
 
-[![CI](https://github.com/Les-Cop1/menu-crous/actions/workflows/ci.yml/badge.svg)](https://github.com/Les-Cop1/my-setup/actions/workflows/ci.yml)
+[![CI](https://github.com/Les-Cop1/menu-crous/actions/workflows/ci.yml/badge.svg)](https://github.com/Les-Cop1/menu-crous/actions/workflows/ci.yml)
 
 Website to view CROUS menus
 

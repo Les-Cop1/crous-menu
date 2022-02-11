@@ -35,12 +35,12 @@ const Menu = () => {
                 )
                 const { data } = response
 
-                if (data.length > 0)
+                if (data.length > 0) {
                     currentMenus.push({
                         day: timestamp,
                         meal: data[0].plat.libelle.split(", "),
                     })
-                else {
+                } else {
                     currentMenus.push({
                         day: timestamp,
                         meal: ["Aucun menu pour ce jour"],
@@ -80,11 +80,11 @@ const Menu = () => {
         <div className="container">
             <div className="weeks">
                 <button type="button" onClick={previousWeek}>
-                    &#12296; Semaine précédente
+                    &#12296; &nbsp; Semaine précédente
                 </button>
 
                 <button type="button" onClick={nextWeek}>
-                    Semaine suivante &#12297;
+                    Semaine suivante &nbsp; &#12297;
                 </button>
             </div>
             <div className="menus">

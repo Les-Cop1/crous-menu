@@ -1,37 +1,22 @@
 {
   "name": "menu-crous",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.31",
-    "@fortawesome/free-brands-svg-icons": "^5.15.0",
-    "@fortawesome/free-regular-svg-icons": "^5.15.0",
-    "@fortawesome/free-solid-svg-icons": "^5.15.0",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.20.0",
-    "bootstrap": "^5.0.0-alpha2",
-    "popper.js": "^1.16.1",
-    "qwant-api": "^0.5.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
-    "react-scroll": "^1.8.1",
-    "react-scroll-button": "^1.1.2",
-    "react-spinners": "^0.9.0"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "lint": "eslint .",
+    "format": "lint-staged",
+    "prepare": "husky install"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "prettier --write"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "semi": false,
+    "trailingComma": "es5",
+    "arrowParens": "always"
   },
   "browserslist": {
     "production": [
@@ -44,5 +29,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^5.0.0",
+    "react-spinners": "^0.11.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
+    "eslint-plugin-react": "^7.28.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.3.3",
+    "prettier": "^2.5.1"
   }
 }

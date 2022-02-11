@@ -4,7 +4,7 @@
 
 Website to view CROUS menus
 
-![Logo](https://github.com/Les-Cop1/menu-crous/blob/main/front/public/repository-open-graph-template.png?raw=true)
+![logo](https://user-images.githubusercontent.com/34753442/153671471-06535fa5-71d0-45a2-8557-70b4afbb7c2d.png)
 
 ## Run Locally
 

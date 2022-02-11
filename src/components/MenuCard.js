@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import PropTypes from "prop-types"
+import MenuCardSkeleton from "./MenuCardSkeleton"
 
-const MenuCard = ({ menu }) => {
+const MenuCard = ({ menu, loading }) => {
+    if (loading) {
+        return <MenuCardSkeleton />
+    }
+
     const [image, setImage] = useState(process.env.PUBLIC_URL + "/nothing.jpg")
     const [vegeMenu, setVegeMenu] = useState(false)
     const [activeMenu, setActiveMenu] = useState(menu.meal)
@@ -33,7 +38,7 @@ const MenuCard = ({ menu }) => {
                     Math.random() * Math.floor(data.hits.length)
                 )
 
-                if (data.hits[index]) {
+                if (data.hits[index] && query !== "Aucun") {
                     setImage(data.hits[index].webformatURL)
                 } else {
                     setImage(process.env.PUBLIC_URL + "/nothing.jpg")

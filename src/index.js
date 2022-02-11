@@ -1,6 +1,7 @@
 import React, { Suspense } from "react"
 import ReactDOM from "react-dom"
 import "./assets/styles/index.css"
+import "./assets/styles/skeleton.css"
 import App from "./App"
 
 ReactDOM.render(

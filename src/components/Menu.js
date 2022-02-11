@@ -3,7 +3,7 @@ import axios from "axios"
 import MenuCard from "./MenuCard"
 
 const Menu = () => {
-    const [menus, setMenus] = useState([])
+    const [menus, setMenus] = useState(["", "", "", "", ""])
     const [currentWeek, setCurrentWeek] = useState(new Date())
     const [cafeteria] = useState(15)
     const [loading, setLoading] = useState(true)
@@ -62,8 +62,8 @@ const Menu = () => {
             }
         }
 
-        setLoading(false)
         setMenus(currentMenus)
+        setLoading(false)
     }
 
     const previousWeek = () => {

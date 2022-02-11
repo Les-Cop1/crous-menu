@@ -4,14 +4,20 @@ import PropTypes from "prop-types"
 
 const MenuCard = ({ menu }) => {
     const [image, setImage] = useState(process.env.PUBLIC_URL + "/nothing.jpg")
+    const [vegeMenu, setVegeMenu] = useState(false)
+    const [activeMenu, setActiveMenu] = useState(menu.meal)
+
+    useEffect(() => {
+        setActiveMenu(vegeMenu ? menu.mealVege : menu.meal)
+    }, [vegeMenu])
 
     const updateImage = () => {
-        let words = menu.meal[0].split(" ")
+        let words = activeMenu[0].split(" ")
         let query
         if (words[1] === "de") {
-            query = menu.meal[0].split(" ")[2]
+            query = activeMenu[0].split(" ")[2]
         } else {
-            query = menu.meal[0].split(" ")[0]
+            query = activeMenu[0].split(" ")[0]
         }
 
         axios
@@ -40,7 +46,7 @@ const MenuCard = ({ menu }) => {
 
     useEffect(() => {
         updateImage()
-    }, [menu])
+    }, [menu, vegeMenu])
 
     return (
         <div className="menu">
@@ -59,9 +65,26 @@ const MenuCard = ({ menu }) => {
                         day: "numeric",
                     })}
                 </h5>
+                <div className="menu-subHeader">
+                    <button
+                        type="button"
+                        className={vegeMenu ? "" : "is-active"}
+                        onClick={() => setVegeMenu(false)}
+                    >
+                        &#129385;
+                    </button>
+                    <div style={{ margin: ".2rem" }} />
+                    <button
+                        type="button"
+                        className={vegeMenu ? "is-active" : ""}
+                        onClick={() => setVegeMenu(true)}
+                    >
+                        &#127811;
+                    </button>
+                </div>
                 <div>
                     <ul>
-                        {menu.meal.map((plat, i) => (
+                        {activeMenu.map((plat, i) => (
                             <li key={i} className="text-capitalize-first">
                                 {plat}
                             </li>
@@ -76,6 +99,7 @@ const MenuCard = ({ menu }) => {
 MenuCard.propTypes = {
     menu: PropTypes.shape({
         meal: PropTypes.arrayOf(String),
+        mealVege: PropTypes.arrayOf(String),
         day: PropTypes.number,
     }),
     loading: PropTypes.bool,

@@ -36,20 +36,28 @@ const Menu = () => {
                 const { data } = response
 
                 if (data.length > 0) {
+                    const regexContenant = /\(contenant .*\)$/g
                     currentMenus.push({
                         day: timestamp,
-                        meal: data[0].plat.libelle.split(", "),
+                        meal: data[0].plat.libelle
+                            .replace(regexContenant, "")
+                            .split(", "),
+                        mealVege: data[2].plat.libelle
+                            .replace(regexContenant, "")
+                            .split(", "),
                     })
                 } else {
                     currentMenus.push({
                         day: timestamp,
                         meal: ["Aucun menu pour ce jour"],
+                        mealVege: ["Aucun menu pour ce jour"],
                     })
                 }
             } catch (error) {
                 currentMenus.push({
                     day: timestamp,
                     meal: ["Aucun menu pour ce jour"],
+                    mealVege: ["Aucun menu pour ce jour"],
                 })
             }
         }

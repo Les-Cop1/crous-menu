@@ -100,7 +100,19 @@ button {
     color: #6c757d;
     font-size: 1.25rem;
     margin-top: 0;
+    margin-bottom: 0.5rem;
     font-weight: lighter;
+}
+
+.is-active{
+    background-color: rgb(204, 204, 204);
+}
+
+
+.menu-subHeader {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
 .menu-image {

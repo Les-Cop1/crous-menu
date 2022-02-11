@@ -10,8 +10,15 @@ const Menu = () => {
 
     const getMonday = (d) => {
         d = new Date(d)
-        const day = d.getDay(),
+        const day = d.getDay()
+
+        let diff
+        if (day <= 5) {
             diff = d.getDate() - day + (day === 0 ? -6 : 1) // adjust when day is sunday
+        } else {
+            diff = d.getDate() + (7 - day) + (day === 0 ? -6 : 1) // adjust when day is sunday
+        }
+
         return new Date(d.setDate(diff))
     }
 
